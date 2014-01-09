@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="YaCaPDaemon:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/YaCaPDaemon.jar</output-path>
+    <root id="archive" name="YaCaPDaemon.jar">
+      <element id="module-output" name="YaCaPDaemon" />
+      <element id="extracted-dir" path="$USER_HOME$/Software/libs/JSoup/jsoup-1.7.2.jar" path-in-jar="/" />
+      <element id="library" level="application" name="jsoup-1.7.2" />
+    </root>
+  </artifact>
+</component>

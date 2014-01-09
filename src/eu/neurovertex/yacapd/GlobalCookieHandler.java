@@ -16,7 +16,7 @@ import java.util.prefs.Preferences;
 public class GlobalCookieHandler extends CookieHandler {
 	private final Map<String, Set<String>> cookies = new HashMap<>();
 	private static final Logger log = Logger.getLogger(GlobalCookieHandler.class.getName());
-	private static final Preferences prefs = Preferences.systemNodeForPackage(GlobalCookieHandler.class);
+	private static final Preferences prefs = Preferences.userNodeForPackage(GlobalCookieHandler.class);
 	private String sessionHost, sessionCookie;
 
 	public static GlobalCookieHandler getDefault() {
@@ -35,9 +35,9 @@ public class GlobalCookieHandler extends CookieHandler {
 				Set<String> store = new HashSet<>();
 				store.add(session);
 				cookies.put(sessionHost, store);
+				log.fine("Loaded session cookie \"" + session + "\" for \"" + sessionHost + "\".");
 				return true;
 			}
-			log.fine("Loaded session cookie \"" + session + "\" for \"" + sessionHost + "\".");
 		} else {
 			log.fine("No session cookie loaded");
 		}

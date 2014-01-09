@@ -5,8 +5,7 @@ import eu.neurovertex.yacapd.gui.Gui;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
@@ -18,8 +17,14 @@ public class Main {
 
 	public static void main(String args[]) throws IOException {
 		// TODO add command-line arguments
-		Preferences prefs = Preferences.systemNodeForPackage(YacapPageProcessor.class);
+		Preferences prefs = Preferences.userNodeForPackage(YacapPageProcessor.class);
 		Logger.getLogger(Main.class.getPackage().getName()).setLevel(Level.INFO); // Sets logging level
+
+		Logger root = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+		for (Handler h : root.getHandlers())
+			root.removeHandler(h);
+
+		root.addHandler(new StreamHandler(System.out, new SimpleFormatter()));
 
 		if (prefs.get("username", "").isEmpty() || prefs.get("password", "").isEmpty())
 			promptLogin(prefs);
@@ -27,7 +32,8 @@ public class Main {
 		YacapPageProcessor processor = new YacapPageProcessor();
 		if (!GraphicsEnvironment.isHeadless()) {
 			new Gui(processor);
-		}
+		} else
+			System.out.println("Skipping GUI (Headless environment)");
 		new Thread(processor).start();
 	}
 

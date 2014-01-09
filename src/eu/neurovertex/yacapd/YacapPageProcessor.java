@@ -26,7 +26,7 @@ public class YacapPageProcessor extends Observable implements Runnable, Preferen
 	private YacapState currentState = YacapState.UNINITIALIZED, nextState = null;
 	private HTTPSDownloader downloader;
 	private boolean exit = false, reconnect = true;
-	private static final Preferences prefs = Preferences.systemNodeForPackage(YacapPageProcessor.class);
+	private static final Preferences prefs = Preferences.userNodeForPackage(YacapPageProcessor.class);
 	private boolean loginCorrect = false;
 	private static final Logger log = Logger.getLogger(YacapPageProcessor.class.getName());
 
@@ -50,6 +50,7 @@ public class YacapPageProcessor extends Observable implements Runnable, Preferen
 
 	@Override
 	public void run() {
+		log.setUseParentHandlers(true);
 		log.info("Processor started.");
 		int retries = 0;
 		while (!exit) {
@@ -223,6 +224,8 @@ public class YacapPageProcessor extends Observable implements Runnable, Preferen
 				}
 				if (cnt == 3)
 					setCurrentState(YacapState.AUTH);
+				else
+					setCurrentState(YacapState.LOGOUT);
 				break;
 			case AUTH:
 				if ((el = doc.getElementById("status")) != null && el.className().equalsIgnoreCase("errors")) {

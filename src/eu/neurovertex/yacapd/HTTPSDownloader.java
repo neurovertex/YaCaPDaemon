@@ -25,7 +25,7 @@ public class HTTPSDownloader extends Observable implements HostnameVerifier {
 
 	private YacapPageProcessor processor;
 	private boolean exit = false;
-	private static final Preferences prefs = Preferences.systemNodeForPackage(HTTPSDownloader.class);
+	private static final Preferences prefs = Preferences.userNodeForPackage(HTTPSDownloader.class);
 	private static final String logFile = "/downloaded_%s.html",
 			ENCODING = "UTF-8";
 	private static final Logger log = Logger.getLogger(HTTPSDownloader.class.getName());
