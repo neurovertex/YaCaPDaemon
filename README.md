@@ -27,7 +27,7 @@ Assuming you're at the root of the project and have jsoup.jar in a lib folder, y
 
 and you can run the program with :
 
-	javac -cp lib/jsoup.jar -cp bin eu.neurovertex.yacapd.Main
+	javac -cp "lib/jsoup.jar;bin" eu.neurovertex.yacapd.Main
 
 You can make a script or a .jar for it but for now the only way the program knows to ask your login/password is via standard input/output so you'll need to launch it through a terminal or IDE at least the fist time.
 
@@ -62,7 +62,7 @@ Si vous êtez à la racine du projet et avez jsoup.rar dans un dossier lib, vous
 
 Et lancer le programmer avec :
 
-	javac -cp lib/jsoup.jar -cp bin eu.neurovertex.yacapd.Main
+	javac -cp "lib/jsoup.jar;bin" eu.neurovertex.yacapd.Main
 
 Vous pouvez faire un script ou un .jar pour ça mais le seul moyen que le programme connait pour demander vos identifiants est l'entrée/sortie standard donc vous devrez le lancer à partir d'un terminal ou d'un IDE au moins la première fois.
 
